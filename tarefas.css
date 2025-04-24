@@ -1,0 +1,170 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    color: #ffffff;
+}
+body{
+    width: 100%;
+    height: 100dvh;
+    background-color: rgb(0, 42, 55);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+header{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 20px;
+    background-color: rgba(0, 29, 38, 0.526);
+    box-shadow: 0px 0px 1px #ffffff;
+}
+.title{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header > *{
+    width: 100%;
+}
+header > div{
+    display: flex;
+    justify-content: flex-end;
+}
+header > div > button{
+    width: 85px;
+    height: 35px;
+    border-radius: 4px;
+    background-color: rgba(0, 56, 73, 0.838);
+    cursor: pointer;
+}
+.nome-perfil{
+    display: flex;
+    justify-content: flex-start;
+}
+body > span{
+    width: 65%;
+    margin: 10px 0;
+    font-size: 14pt;
+    display: flex;
+}
+.tarefas{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 80%;
+    overflow-y: auto;
+    padding: 10px 0;
+    gap: 5px;
+}
+.tarefa{
+    display: flex;
+    width: 80%;
+    padding: 15px;
+    align-items: center;
+    background-color: rgba(0, 56, 73, 0.838);
+    border-radius: 4px;
+    gap: 10px;
+    font-size: 12pt;
+}
+.check{
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+.check > span{
+    display: flex;
+    font-size: 10pt;
+    font-weight: 600;
+    color: rgba(0, 56, 73, 0.838);
+    margin-top: 1px;
+}
+.form{
+    height: 100vh;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+form{
+    width: 570px;
+    height: 370px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    box-shadow: 0px 0px 3px rgb(255, 255, 255);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+form > *{
+    margin: 12px;
+    color: #ffffff;
+}
+form > input, form > button{
+    padding: 10px;
+    width: 75%;
+    border-radius: 8px;
+    border: 2px solid rgba(0, 71, 92, 0.717);
+    background: none;
+}
+form > input::placeholder{
+    color: #e9e9e9;
+}
+form > button{
+    background-color: rgba(0, 71, 92, 0.717);
+}
+form > label{
+    width: 75%;
+    margin: 5px;
+    font-size: 11pt;
+    font-weight: 400;
+}
+.div-sem{
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.sem{
+    height: 14pt;
+    margin-bottom: 70px;
+}
+@media (max-width:600px){
+    .tarefas{
+        width: 100%;
+    }
+    body > span{
+        width: 80%;
+        font-size: 13pt;
+    }
+    .criar{
+        width: 80px;
+        height: 30px;
+    }
+    form{
+        width: 85%;
+    }
+    form > input,  form > button, form > label{
+        width: 97%;
+    }
+}

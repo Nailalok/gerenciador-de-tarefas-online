@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="descrition" content="Cadastre e compartilhe suas tarefas diarias com o mundo.">
+    <meta name="keywords" content="tarefas, tarefas diarias, tarefas do dia, tarefas do mes, tarefas do ano, tarefas do semestre, tarefas do trimestre, tarefas do semestre, tarefas do bimestre, tarefas do ciclo, tarefas do periodo, tarefas do curso, tarefas do trabalho, tarefas do projeto, tarefas do plano de estudo">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="tarefas.css">
+    <title>Tarefas</title>
+</head>
+<body>
+    <header>
+        <span name="nome-perfil" class="nome-perfil">Nome Do Usuario</span>
+        <span class="title">Gerenciador De Tarefas</span>
+        <div>
+            <button class="criar">Criar</button>
+        </div>
+    </header>
+    <section class="form">
+        <form action="/adicionar" method="POST">
+            <span>Criar Tarefa</span>
+            <label for="tarefa-form">Nome da tarefa</label>
+            <input type="text" name="nametarefa" id="nametarefa" class="tarefa-form" placeholder="Nome da nova tarefa">
+            <button type="submit">Adicionar</button>
+        </form>
+    </section>
+    <span>Tarefas</span>
+    <section class="tarefas">
+        <!--<div class="tarefa">
+            <div class="check" id="id1">
+                <span>X</span>
+            </div>
+            <span class="nome-tarefa" id="for-id1">Nome da tarefa</span>
+        </div>
+        <div class="tarefa">
+            <div class="check" id="id2">
+                <span>X</span>
+            </div>
+            <span class="nome-tarefa" id="for-id2">Nome da tarefa</span>
+        </div>-->
+        <div class="div-sem">
+            <span class="sem">Sem Tarefas</span>
+        </div>
+    </section>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const userId = params.get('user_id');
+        const name = params.get('name');
+
+        document.querySelector("form").addEventListener("submit", function(){
+            setTimeout(() => {
+                location.reload();
+            }, 500);
+        });
+
+        fetch(`/verificar-user?user_id=${userId}&name=${name}`)
+        .then(res => res.json())
+        .then(data => {
+            if(!data.valid) {
+                window.location.href = '/index.html'
+            } else {
+                document.querySelector(".nome-perfil").textContent = name;
+            }
+        })
+        .catch(() => {
+            window.location.href = '/index.html'
+        })
+
+        document.querySelector(".criar").addEventListener("click", () => {
+            document.querySelector("body > span").style.display = "none";
+            document.querySelector(".tarefas").style.display = "none";
+            document.querySelector(".form").style.display = "flex";
+        });
+        let idTar = 0;
+        fetch('/requireTarefas')
+        .then(res => res.json())
+        .then(requireTarefas => {
+            const tarefas = document.querySelector(".tarefas");
+            requireTarefas.forEach(item => {
+                idTar += 3;
+                const div = document.createElement('div');
+                div.className = 'tarefa';
+
+                const div2 = document.createElement('div');
+                div2.className = 'check';
+                div2.id = `id${idTar}`;
+
+                const spanX = document.createElement('span');
+                spanX.textContent = "X";
+                div2.appendChild(spanX);
+
+                div.appendChild(div2);
+
+                const span = document.createElement('span');
+                span.className = 'nome-tarefa';
+                span.id = `for-id${idTar}`;
+                span.textContent = item.nametarefa;
+
+                div.appendChild(span);
+
+                tarefas.appendChild(div);
+                document.querySelector(".div-sem").style.display = "none";
+            });
+            const divs = document.querySelectorAll(".check");
+            divs.forEach(di => {
+                di.addEventListener("click", function () {
+                    const idDiv = this.id;
+                    const idDivCheck = document.getElementById(`${idDiv}`);
+                    if(this.style.backgroundColor === "rgb(0, 204, 255)"){
+                        idDivCheck.style.backgroundColor = "transparent";
+                        document.getElementById(`for-${idDiv}`).style.color = "#ffffff";
+                    } else{
+                        idDivCheck.style.backgroundColor = "rgb(0, 204, 255)";
+                        document.getElementById(`for-${idDiv}`).style.color = "rgba(255, 255, 255, 0.4)";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
