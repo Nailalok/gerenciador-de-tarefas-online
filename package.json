@@ -1,0 +1,23 @@
+{
+  "name": "gerenciar",
+  "version": "1.0.0",
+  "description": "um gerenciador de tarefas online",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gerenciador",
+    "tarefas",
+    "database",
+    "online"
+  ],
+  "author": "Benit Pinoshet",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.0"
+  }
+}
